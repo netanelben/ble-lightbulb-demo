@@ -1,21 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import './style.scss';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import * as serviceWorker from './serviceWorker';
+import './index.scss';
 
-injectTapEventPlugin();
+ReactDOM.render(<App/>, document.getElementById('root'));
+// ReactDOM.render(
+//     <MuiThemeProvider>
+//         <App />
+//     </MuiThemeProvider>, document.getElementById('root'));
 
-function createRoot() {
-    const div = document.createElement('div');
-    div.id = 'root';
-    document.body.appendChild(div);
-    return div;
-}
-
-ReactDOM.render(
-    <MuiThemeProvider>
-        <App />
-    </MuiThemeProvider>
-    , createRoot());
+serviceWorker.unregister();

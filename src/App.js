@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { SketchPicker } from 'react-color';
-import RaisedButton from 'material-ui/RaisedButton';
-
 
 export default class App extends Component {
-
     characteristic;
 
     constructor() {
@@ -14,7 +11,6 @@ export default class App extends Component {
     }
 
     onChangeHandler(value) {
-        
         const r = Number(value.rgb.r).toString(16);
         const g = Number(value.rgb.g).toString(16);
         const b = Number(value.rgb.b).toString(16);
@@ -24,8 +20,8 @@ export default class App extends Component {
     }
 
     setBulbColor(red, green, blue, alpha) {
-        console.info("color: ", red, green, blue);
         const data =  new Uint8Array([`0x${red}`,`0x${green}`, `0x${blue}`, `0x${alpha}`]);
+
         return this.characteristic.writeValue(data);
     };
 
@@ -45,12 +41,13 @@ export default class App extends Component {
             })
             .catch(e => console.error(e));
     }
-    
-  render() {
 
-    return( <div>
-                <RaisedButton label="Connect!" style={{marginTop:'30px',marginBottom:'10px',width: '100%'}} primary={true} onClick={this.BLEConnect}/>
+    render() {
+        return(
+            <div>
+                <button style={{marginTop:'30px',marginBottom:'10px',width: '100%', padding: '10px'}} onClick={this.BLEConnect}>Connect</button>
                 <SketchPicker type="sketch" onChange={this.onChangeHandler} />
-            </div> );
-  }
+            </div>
+        );
+    }
 }
